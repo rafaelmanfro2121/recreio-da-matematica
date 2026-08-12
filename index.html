@@ -204,6 +204,21 @@
     flex-direction: column;
   }
 
+  #main.view-enter {
+    animation: view-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes view-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* ---------- Level map ---------- */
 
   .map-intro {
@@ -257,7 +272,7 @@
     font-size: 26px;
     font-weight: 800;
     color: #fff;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow), 0 14px 28px -10px rgba(20, 15, 40, 0.35);
     border: 4px solid var(--card);
     transition: transform 0.15s ease;
   }
@@ -337,6 +352,102 @@
     text-underline-offset: 3px;
   }
 
+  .tabuada-entry {
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    background: var(--card);
+    border: 2px dashed #1f6f5c55;
+    border-radius: 22px;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .tabuada-entry:active {
+    transform: scale(0.98);
+  }
+
+  .tabuada-entry-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e7f3ef;
+    color: #1f6f5c;
+  }
+
+  .tabuada-entry-badge svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* ---------- Tabuada select ---------- */
+
+  .tabuada-select-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0 40px;
+  }
+
+  .tabuada-grid {
+    width: 100%;
+    max-width: 360px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tabuada-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: var(--card);
+    border: 2px solid var(--paper-line);
+    border-radius: 20px;
+    padding: 16px 10px;
+    transition: transform 0.1s ease;
+  }
+
+  .tabuada-card:active {
+    transform: scale(0.96);
+  }
+
+  .tabuada-num {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #1f6f5c;
+  }
+
+  .tabuada-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .tabuada-time {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  .tabuada-time svg {
+    width: 12px;
+    height: 12px;
+  }
+
   /* ---------- Intro ---------- */
 
   .intro-screen {
@@ -360,7 +471,7 @@
     font-size: 56px;
     font-weight: 800;
     color: #fff;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow), 0 18px 34px -12px rgba(20, 15, 40, 0.4);
     transform: rotate(-4deg);
   }
 
@@ -776,6 +887,20 @@
     padding: 8px 12px;
   }
 
+  .lesson-contrast {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #fdeae7;
+    color: #a13a2a;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+  }
+
   .dots-row {
     display: flex;
     flex-wrap: wrap;
@@ -1144,6 +1269,8 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9.5h16M4 14.5h16"/><circle cx="9" cy="9.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="15" cy="9.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1.15" fill="currentColor" stroke="none"/><circle cx="17" cy="14.5" r="1.15" fill="currentColor" stroke="none"/></svg>',
     mascotA:
       '<svg viewBox="0 0 64 64"><circle cx="32" cy="37" r="21" fill="#1f6f5c"/><circle cx="20" cy="15" r="5" fill="#1f6f5c"/><circle cx="44" cy="15" r="5" fill="#1f6f5c"/><circle cx="24" cy="34" r="4" fill="#fff"/><circle cx="40" cy="34" r="4" fill="#fff"/><circle cx="24" cy="34" r="1.8" fill="#20212b"/><circle cx="40" cy="34" r="1.8" fill="#20212b"/><path d="M23 45q9 8 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/><circle cx="15" cy="42" r="3" fill="#ef5b4e" opacity="0.3"/><circle cx="49" cy="42" r="3" fill="#ef5b4e" opacity="0.3"/></svg>',
+    timer:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/><path d="M18.5 5.5 20 4"/></svg>',
     mascotB:
       '<svg viewBox="0 0 64 64"><circle cx="32" cy="37" r="21" fill="#ffb627"/><circle cx="32" cy="13" r="5" fill="#ffb627"/><circle cx="24" cy="34" r="4" fill="#fff"/><circle cx="40" cy="34" r="4" fill="#fff"/><circle cx="25" cy="35" r="1.8" fill="#20212b"/><circle cx="41" cy="35" r="1.8" fill="#20212b"/><path d="M19 28q5-5 9-1" stroke="#20212b" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M36 27q5-5 9-1" stroke="#20212b" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="32" cy="46" r="3.4" fill="#20212b"/></svg>',
   };
@@ -1175,16 +1302,18 @@
       title: "Multiplicação",
       symbolText: "×",
       ops: ["multiply"],
-      explainOps: ["multiply", "divide"],
+      explainOps: ["multiply"],
+      contrastNote: `Não confunda com a divisão: aqui você JUNTA grupos iguais para saber o total. Na divisão você faz o oposto — REPARTE um total em grupos iguais.`,
       color: "var(--op-multiply)",
-      description: "Descubra quando usar a multiplicação — sem confundir com a divisão!",
+      description: "Descubra quando usar a multiplicação!",
     },
     {
       id: "divide",
       title: "Divisão",
       symbolText: "÷",
       ops: ["divide"],
-      explainOps: ["multiply", "divide"],
+      explainOps: ["divide"],
+      contrastNote: `Não confunda com a multiplicação: aqui você REPARTE um total em grupos iguais. Na multiplicação você faz o oposto — JUNTA grupos iguais para saber o total.`,
       color: "var(--op-divide)",
       description: "Agora é a vez de repartir tudo em partes iguais!",
     },
@@ -1787,6 +1916,47 @@
     return updated;
   }
 
+  /* ============ Tabuada (times-table fluency drills) ============ */
+  const TABUADA_KEY = "mathgame:tabuada:v1";
+  const TABUADA_TABLES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const TABUADA_REQUEUE_MIN = 2;
+  const TABUADA_REQUEUE_MAX = 4;
+
+  function loadTabuadaProgress() {
+    try {
+      const raw = localStorage.getItem(TABUADA_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveTabuadaProgress(p) {
+    localStorage.setItem(TABUADA_KEY, JSON.stringify(p));
+  }
+
+  function tabuadaTableProgress(all, table) {
+    return all[table] || { stars: 0, bestTimeMs: null, missCounts: {} };
+  }
+
+  // Retrieval practice in randomized (not sequential) order, with facts the
+  // child has historically missed nudged earlier — spaced/weighted repetition
+  // rather than a fixed 1x-10x recital, which is what actually builds recall.
+  function buildTabuadaQueue(table, missCounts) {
+    const facts = TABUADA_TABLES.map((m) => ({ table, m, answer: table * m }));
+    return facts
+      .map((f) => ({ f, sortKey: Math.random() - (missCounts[f.m] || 0) * 0.15 }))
+      .sort((a, b) => a.sortKey - b.sortKey)
+      .map((x) => x.f);
+  }
+
+  function formatElapsed(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return minutes > 0 ? `${minutes}m ${String(seconds).padStart(2, "0")}s` : `${seconds}s`;
+  }
+
   /* ============ Sound ============ */
   let audioCtx = null;
   let muted = localStorage.getItem(MUTE_KEY) === "1";
@@ -1888,6 +2058,8 @@
     quizRound: [],
     quizResults: [],
     quizChosenOp: null,
+    tabuadaProgress: loadTabuadaProgress(),
+    tabuada: null, // { table, queue, clearedFacts, misses, startTime, input, feedback, currentFact }
   };
 
   const mainEl = document.getElementById("main");
@@ -1938,8 +2110,11 @@
   }
 
   function resetQuestionState() {
+    const level = LEVELS[state.levelIndex];
     state.subStep = "story";
-    state.chosenOp = null;
+    // When a level only practices one operation, there's nothing to pick between —
+    // auto-confirm it instead of showing a pointless single-button choice.
+    state.chosenOp = level.ops.length === 1 ? level.ops[0] : null;
     state.input = "";
     state.feedback = null;
   }
@@ -2053,13 +2228,21 @@
   }
 
   document.addEventListener("keydown", (e) => {
-    if (state.view !== "playing" || state.subStep !== "solve") return;
-    if (/^[0-9]$/.test(e.key)) pressDigit(e.key);
-    else if (e.key === "Backspace") pressBackspace();
-    else if (e.key === "," || e.key === ".") pressComma();
-    else if (e.key === "Enter") {
-      if (state.feedback) finalizeQuestion();
-      else submitAnswer();
+    if (state.view === "playing" && state.subStep === "solve") {
+      if (/^[0-9]$/.test(e.key)) pressDigit(e.key);
+      else if (e.key === "Backspace") pressBackspace();
+      else if (e.key === "," || e.key === ".") pressComma();
+      else if (e.key === "Enter") {
+        if (state.feedback) finalizeQuestion();
+        else submitAnswer();
+      }
+    } else if (state.view === "tabuada-round" && state.tabuada && !state.tabuada.finished) {
+      if (/^[0-9]$/.test(e.key)) tabuadaPressDigit(e.key);
+      else if (e.key === "Backspace") tabuadaPressBackspace();
+      else if (e.key === "Enter") {
+        if (state.tabuada.feedback) tabuadaContinue();
+        else tabuadaSubmit();
+      }
     }
   });
 
@@ -2099,6 +2282,118 @@
     render();
   }
 
+  /* ============ Tabuada interactions ============ */
+  function goToTabuadaSelect() {
+    playTap();
+    state.view = "tabuada-select";
+    render();
+  }
+
+  function nextTabuadaFact(t) {
+    while (t.queue.length > 0 && t.clearedFacts.has(t.queue[0].m)) t.queue.shift();
+    return t.queue[0] || null;
+  }
+
+  function beginTabuadaRound(table) {
+    playTap();
+    const prog = tabuadaTableProgress(state.tabuadaProgress, table);
+    const queue = buildTabuadaQueue(table, prog.missCounts);
+    state.tabuada = {
+      table,
+      queue,
+      clearedFacts: new Set(),
+      misses: 0,
+      startTime: Date.now(),
+      input: "",
+      feedback: null,
+      currentFact: queue[0],
+      finished: false,
+      elapsedMs: null,
+      newRecord: false,
+      starsEarned: 0,
+    };
+    state.view = "tabuada-round";
+    render();
+  }
+
+  function tabuadaPressDigit(d) {
+    const t = state.tabuada;
+    if (!t || t.feedback || t.finished || t.input.length >= 3) return;
+    playTap();
+    t.input += d;
+    renderTabuadaAnswer();
+  }
+
+  function tabuadaPressBackspace() {
+    const t = state.tabuada;
+    if (!t || t.feedback || t.finished) return;
+    t.input = t.input.slice(0, -1);
+    renderTabuadaAnswer();
+  }
+
+  function tabuadaSubmit() {
+    const t = state.tabuada;
+    if (!t || t.feedback || t.finished || t.input.length === 0) return;
+    const correct = Number(t.input) === t.currentFact.answer;
+    t.feedback = correct ? "correct" : "wrong";
+    if (correct) playCorrect();
+    else playWrong();
+    render();
+  }
+
+  function finishTabuadaRound() {
+    const t = state.tabuada;
+    t.finished = true;
+    t.elapsedMs = Date.now() - t.startTime;
+    const prog = tabuadaTableProgress(state.tabuadaProgress, t.table);
+    const stars = t.misses === 0 ? 3 : t.misses <= 3 ? 2 : 1;
+    let newRecord = false;
+    if (t.misses === 0 && (prog.bestTimeMs === null || t.elapsedMs < prog.bestTimeMs)) {
+      prog.bestTimeMs = t.elapsedMs;
+      newRecord = true;
+    }
+    prog.stars = Math.max(prog.stars, stars);
+    state.tabuadaProgress[t.table] = prog;
+    saveTabuadaProgress(state.tabuadaProgress);
+    t.newRecord = newRecord;
+    t.starsEarned = stars;
+    render();
+    if (stars === 3) {
+      playLevelUp();
+      requestAnimationFrame(burstConfetti);
+    }
+  }
+
+  function tabuadaContinue() {
+    const t = state.tabuada;
+    const fact = t.currentFact;
+    const wasCorrect = t.feedback === "correct";
+    t.queue.shift();
+
+    if (wasCorrect) {
+      t.clearedFacts.add(fact.m);
+    } else {
+      t.misses++;
+      const prog = tabuadaTableProgress(state.tabuadaProgress, t.table);
+      prog.missCounts[fact.m] = (prog.missCounts[fact.m] || 0) + 1;
+      state.tabuadaProgress[t.table] = prog;
+      saveTabuadaProgress(state.tabuadaProgress);
+      const insertAt = Math.min(t.queue.length, randInt(TABUADA_REQUEUE_MIN, TABUADA_REQUEUE_MAX));
+      t.queue.splice(insertAt, 0, fact);
+    }
+
+    t.input = "";
+    t.feedback = null;
+
+    if (t.clearedFacts.size >= TABUADA_TABLES.length) {
+      finishTabuadaRound();
+      return;
+    }
+
+    t.currentFact = nextTabuadaFact(t);
+    render();
+  }
+
   /* ============ Rendering ============ */
   function render() {
     updateBackBtn();
@@ -2108,6 +2403,11 @@
     else if (state.view === "quiz") renderQuiz();
     else if (state.view === "playing") renderPlaying();
     else if (state.view === "summary") renderSummary();
+    else if (state.view === "tabuada-select") renderTabuadaSelect();
+    else if (state.view === "tabuada-round") renderTabuadaRound();
+    mainEl.classList.remove("view-enter");
+    void mainEl.offsetWidth;
+    mainEl.classList.add("view-enter");
   }
 
   function levelBadgeInner(level, unlocked, size) {
@@ -2141,12 +2441,22 @@
     mainEl.innerHTML = `
       <p class="map-intro">Escolha um nível, leia a situação com atenção e descubra qual conta usar. Acerte tudo para desbloquear o próximo!</p>
       <div class="path">${rows}</div>
+      <button class="tabuada-entry" id="tabuada-entry-btn" type="button">
+        <span class="tabuada-entry-badge">${ICONS.timer}</span>
+        <span class="level-info">
+          <span class="level-card">
+            <p class="level-title" style="color:#1f6f5c">Treino de Tabuada</p>
+            <p class="level-desc">Pratique até decorar de verdade, no seu ritmo. Sem trancar nada!</p>
+          </span>
+        </span>
+      </button>
       <button class="reset-link" id="reset-progress-btn" type="button">Reiniciar meu progresso</button>
     `;
 
     mainEl.querySelectorAll(".level-row").forEach((btn) => {
       btn.addEventListener("click", () => startLevel(Number(btn.dataset.level)));
     });
+    document.getElementById("tabuada-entry-btn").addEventListener("click", goToTabuadaSelect);
     document.getElementById("reset-progress-btn").addEventListener("click", () => {
       if (confirm("Tem certeza que quer reiniciar todo o progresso?")) {
         state.progress = defaultProgress();
@@ -2218,14 +2528,30 @@
       })
       .join("");
 
+    const contrastHtml = level.contrastNote
+      ? `<p class="lesson-contrast">⚠️ ${level.contrastNote}</p>`
+      : "";
+
+    const skipQuiz = level.explainOps.length === 1;
+
     mainEl.innerHTML = `
       <div class="lesson-screen">
         <h1 class="lesson-title">Antes de começar...</h1>
         <p class="lesson-intro">Vamos entender direitinho como funciona ${level.explainOps.length > 1 ? "cada conta" : "essa conta"}!</p>
         ${sections}
-        <button class="btn" id="quiz-btn" style="background:${level.color}">Fazer o teste rápido ${ICONS.arrowRight}</button>
+        ${contrastHtml}
+        <button class="btn" id="quiz-btn" style="background:${level.color}">${
+      skipQuiz ? `Começar a praticar ${ICONS.play}` : `Fazer o teste rápido ${ICONS.arrowRight}`
+    }</button>
       </div>`;
-    document.getElementById("quiz-btn").addEventListener("click", beginQuiz);
+    document.getElementById("quiz-btn").addEventListener("click", () => {
+      if (skipQuiz) {
+        state.lessonSeen.add(level.id);
+        beginRound();
+      } else {
+        beginQuiz();
+      }
+    });
   }
 
   function renderQuiz() {
@@ -2337,28 +2663,32 @@
 
   function renderStoryStep(level, q) {
     const qNum = state.results.length + 1;
-    const answered = !!state.chosenOp;
+    const singleOp = level.ops.length === 1;
+    const answered = singleOp || !!state.chosenOp;
     const opCorrect = answered && state.chosenOp === q.operation;
 
-    const choicesHtml = level.ops
-      .map((op) => {
-        const meta = OPS_META[op];
-        let cls = "op-choice";
-        if (answered) {
-          if (op === state.chosenOp && opCorrect) cls += " correct-pick";
-          else if (op === state.chosenOp && !opCorrect) cls += " wrong-pick";
-          else if (op === q.operation && !opCorrect) cls += " reveal";
-        }
-        return `<button class="${cls}" data-op="${op}" ${answered ? "disabled" : ""}>
-          <span class="op-sym">${meta.symbol}</span>
-          <span class="op-lbl">${meta.label}</span>
-        </button>`;
-      })
-      .join("");
+    const choiceSectionHtml = singleOp
+      ? ""
+      : `<p class="op-label">Essa conta é de:</p>
+         <div class="op-choices">${level.ops
+           .map((op) => {
+             const meta = OPS_META[op];
+             let cls = "op-choice";
+             if (answered) {
+               if (op === state.chosenOp && opCorrect) cls += " correct-pick";
+               else if (op === state.chosenOp && !opCorrect) cls += " wrong-pick";
+               else if (op === q.operation && !opCorrect) cls += " reveal";
+             }
+             return `<button class="${cls}" data-op="${op}" ${answered ? "disabled" : ""}>
+               <span class="op-sym">${meta.symbol}</span>
+               <span class="op-lbl">${meta.label}</span>
+             </button>`;
+           })
+           .join("")}</div>`;
 
     const reasonHtml = answered
       ? `<div class="reason-box ${opCorrect ? "correct" : "wrong"}">
-          ${opCorrect ? "✅ Isso mesmo! " : `❌ Essa conta não é de ${OPS_META[state.chosenOp].label.toLowerCase()}. `}${q.reason}
+          ${singleOp ? "💡 " : opCorrect ? "✅ Isso mesmo! " : `❌ Essa conta não é de ${OPS_META[state.chosenOp].label.toLowerCase()}. `}${q.reason}
         </div>
         <div class="btn-row">
           <button class="btn" id="continue-btn" style="background:${level.color}">Vamos calcular ${ICONS.arrowRight}</button>
@@ -2374,17 +2704,20 @@
             <span class="mascot">${ICONS.mascotA}</span>
             <span class="bubble">${q.text} ${q.question}</span>
           </div>
-          <div class="chat-row ask">
-            <span class="mascot">${ICONS.mascotB}</span>
-            <span class="bubble">${askBubbleText(level)}</span>
-          </div>
+          ${
+            singleOp
+              ? ""
+              : `<div class="chat-row ask">
+                   <span class="mascot">${ICONS.mascotB}</span>
+                   <span class="bubble">${askBubbleText(level)}</span>
+                 </div>`
+          }
         </div>
-        <p class="op-label">Essa conta é de:</p>
-        <div class="op-choices">${choicesHtml}</div>
+        ${choiceSectionHtml}
         ${reasonHtml}
       </div>`;
 
-    if (!answered) {
+    if (!singleOp && !answered) {
       mainEl.querySelectorAll(".op-choice").forEach((btn) => {
         btn.addEventListener("click", () => chooseOperation(btn.dataset.op));
       });
@@ -2517,6 +2850,150 @@
     const retryBtn = document.getElementById("retry-btn");
     if (retryBtn) retryBtn.addEventListener("click", beginRound);
     document.getElementById("home-btn").addEventListener("click", goToMap);
+  }
+
+  function renderTabuadaSelect() {
+    const cards = TABUADA_TABLES.map((table) => {
+      const prog = tabuadaTableProgress(state.tabuadaProgress, table);
+      const starsHtml = [0, 1, 2]
+        .map(
+          (s) =>
+            `<span style="color:${s < prog.stars ? "var(--sun)" : "var(--paper-line)"}">${s < prog.stars ? ICONS.star : ICONS.starOutline}</span>`
+        )
+        .join("");
+      const timeHtml = prog.bestTimeMs
+        ? `<span class="tabuada-time">${ICONS.timer} ${formatElapsed(prog.bestTimeMs)}</span>`
+        : "";
+      return `
+        <button class="tabuada-card" data-table="${table}">
+          <span class="tabuada-num">${table}×</span>
+          <span class="tabuada-label">Tabuada do ${table}</span>
+          <span class="stars">${starsHtml}</span>
+          ${timeHtml}
+        </button>`;
+    }).join("");
+
+    mainEl.innerHTML = `
+      <div class="tabuada-select-screen">
+        <h1 class="lesson-title">Treino de Tabuada</h1>
+        <p class="lesson-intro">Escolha uma tabuada. As perguntas vêm embaralhadas, e o que você errar aparece de novo — assim gruda de verdade na memória!</p>
+        <div class="tabuada-grid">${cards}</div>
+      </div>`;
+
+    mainEl.querySelectorAll(".tabuada-card").forEach((btn) => {
+      btn.addEventListener("click", () => beginTabuadaRound(Number(btn.dataset.table)));
+    });
+  }
+
+  function renderTabuadaRound() {
+    if (state.tabuada.finished) renderTabuadaSummary();
+    else renderTabuadaQuestion();
+  }
+
+  function renderTabuadaQuestion() {
+    const t = state.tabuada;
+    const fact = t.currentFact;
+    const cleared = t.clearedFacts.size;
+    const total = TABUADA_TABLES.length;
+    const color = OPS_META.multiply.color;
+
+    mainEl.innerHTML = `
+      <div class="play-screen">
+        <p class="q-count">Tabuada do ${t.table} · ${cleared} de ${total} dominadas</p>
+        <div class="ticks">${ticksHtml(total, cleared)}</div>
+        <div class="slate" id="slate">
+          <span class="num">${fact.table}</span>
+          <span class="sym">×</span>
+          <span class="num">${fact.m}</span>
+          <span class="eq">=</span>
+          <span class="answer" id="answer-slot"></span>
+        </div>
+        <p class="feedback" id="feedback"></p>
+        <div class="keypad" id="keypad" style="--op-color:${color}">
+          ${["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+            .map((d) => `<button class="key" data-digit="${d}">${d}</button>`)
+            .join("")}
+          <button class="key ghost-key" disabled aria-hidden="true"></button>
+          <button class="key" data-digit="0">0</button>
+          <button class="key wide-icon" id="backspace-btn">${ICONS.backspace}</button>
+        </div>
+        <button class="btn submit-btn-wide" id="submit-btn" style="background:${color}">Confirmar ${ICONS.check}</button>
+        <div class="btn-row" id="continue-row" style="display:none;">
+          <button class="btn" id="tabuada-continue-btn" style="background:${color}">Próxima ${ICONS.arrowRight}</button>
+        </div>
+      </div>`;
+
+    mainEl.querySelectorAll(".key[data-digit]").forEach((btn) => {
+      btn.addEventListener("click", () => tabuadaPressDigit(btn.dataset.digit));
+    });
+    document.getElementById("backspace-btn").addEventListener("click", tabuadaPressBackspace);
+    document.getElementById("submit-btn").addEventListener("click", tabuadaSubmit);
+    document.getElementById("tabuada-continue-btn").addEventListener("click", tabuadaContinue);
+
+    renderTabuadaAnswer();
+  }
+
+  function renderTabuadaAnswer() {
+    const slot = document.getElementById("answer-slot");
+    if (!slot) return;
+    const t = state.tabuada;
+    const slate = document.getElementById("slate");
+    const feedback = document.getElementById("feedback");
+    const submitBtn = document.getElementById("submit-btn");
+    const keys = document.querySelectorAll("#keypad .key[data-digit], #backspace-btn");
+    const continueRow = document.getElementById("continue-row");
+    const fact = t.currentFact;
+
+    slot.textContent = t.input || "?";
+    slot.classList.toggle("filled", t.input.length > 0);
+
+    keys.forEach((k) => (k.disabled = !!t.feedback));
+    if (submitBtn) {
+      submitBtn.disabled = !!t.feedback || t.input.length === 0;
+      submitBtn.style.display = t.feedback ? "none" : "inline-flex";
+    }
+
+    if (t.feedback === "correct") {
+      feedback.className = "feedback correct";
+      feedback.innerHTML = `${ICONS.check} Isso mesmo! ${fact.table} × ${fact.m} = ${fact.answer}`;
+      slate.classList.remove("wrong");
+    } else if (t.feedback === "wrong") {
+      feedback.className = "feedback wrong";
+      feedback.innerHTML = `${ICONS.x} ${fact.table} × ${fact.m} = ${fact.answer}`;
+      slate.classList.add("wrong");
+    } else {
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+      slate.classList.remove("wrong");
+    }
+
+    if (continueRow) continueRow.style.display = t.feedback ? "flex" : "none";
+  }
+
+  function renderTabuadaSummary() {
+    const t = state.tabuada;
+    const perfect = t.misses === 0;
+    const color = OPS_META.multiply.color;
+
+    mainEl.innerHTML = `
+      <div class="summary-screen">
+        <div class="medal ${t.starsEarned === 3 ? "gold" : "try"}">${t.starsEarned === 3 ? ICONS.trophy : ICONS.sprout}</div>
+        <h2>${perfect ? "Tabuada dominada!" : "Bom treino!"}</h2>
+        <p class="score">
+          Tabuada do ${t.table} em ${formatElapsed(t.elapsedMs)}${
+      t.misses > 0 ? ` · ${t.misses} ${t.misses === 1 ? "errinho" : "errinhos"}` : ""
+    }
+        </p>
+        ${t.newRecord ? `<p class="summary-note win">🏅 Novo recorde de tempo!</p>` : ""}
+        ${!perfect ? `<p class="summary-note">As que você errou vão aparecer mais vezes na próxima — assim gruda de vez!</p>` : ""}
+        <div class="btn-row">
+          <button class="btn" id="tabuada-again-btn" style="background:${color}">Treinar de novo ${ICONS.retry}</button>
+          <button class="btn ghost" id="tabuada-other-btn">Escolher outra tabuada</button>
+        </div>
+      </div>`;
+
+    document.getElementById("tabuada-again-btn").addEventListener("click", () => beginTabuadaRound(t.table));
+    document.getElementById("tabuada-other-btn").addEventListener("click", goToTabuadaSelect);
   }
 
   render();
