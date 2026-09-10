@@ -3,16 +3,16 @@ import type { ReactNode } from "react";
 
 type Tone = "add" | "subtract" | "multiply" | "divide" | "math" | "logic" | "quick" | "ink" | "sun";
 
-const TONE_STYLES: Record<Tone, string> = {
-  add: "bg-op-add",
-  subtract: "bg-op-subtract",
-  multiply: "bg-op-multiply",
-  divide: "bg-op-divide",
-  math: "bg-world-math",
-  logic: "bg-world-logic",
-  quick: "bg-world-quick",
-  ink: "bg-ink",
-  sun: "bg-sun",
+const TONE_GRADIENT: Record<Tone, string> = {
+  add: "bg-gradient-to-br from-op-add-light to-op-add",
+  subtract: "bg-gradient-to-br from-op-subtract-light to-op-subtract",
+  multiply: "bg-gradient-to-br from-op-multiply-light to-op-multiply",
+  divide: "bg-gradient-to-br from-op-divide-light to-op-divide",
+  math: "bg-gradient-to-br from-world-math-light to-world-math",
+  logic: "bg-gradient-to-br from-world-logic-light to-world-logic",
+  quick: "bg-gradient-to-br from-world-quick-light to-world-quick",
+  ink: "bg-gradient-to-br from-ink-soft to-ink",
+  sun: "bg-gradient-to-br from-sun to-sun",
 };
 
 const SIZE_STYLES = {
@@ -41,7 +41,7 @@ export function Button({
 
   const variantClass =
     variant === "solid"
-      ? `${TONE_STYLES[tone]} text-white shadow-soft`
+      ? `${TONE_GRADIENT[tone]} text-white shadow-soft`
       : variant === "outline"
         ? "border border-line bg-card text-ink shadow-soft"
         : "text-ink-soft";
@@ -50,7 +50,7 @@ export function Button({
     <motion.button
       className={`${base} ${variantClass} ${SIZE_STYLES[size]} ${className}`}
       disabled={disabled}
-      whileHover={disabled ? undefined : { y: -1, filter: "brightness(1.05)" }}
+      whileHover={disabled ? undefined : { y: -1, filter: "brightness(1.06)" }}
       whileTap={disabled ? undefined : { y: 1, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
       {...rest}

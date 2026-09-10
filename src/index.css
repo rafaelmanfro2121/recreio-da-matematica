@@ -35,14 +35,21 @@
 
   /* Math operations */
   --color-op-add: #2563eb;
+  --color-op-add-light: #60a5fa;
   --color-op-subtract: #c2410c;
+  --color-op-subtract-light: #fb923c;
   --color-op-multiply: #db2777;
+  --color-op-multiply-light: #f472b6;
   --color-op-divide: #7c3aed;
+  --color-op-divide-light: #a78bfa;
 
   /* World identities (hub) */
   --color-world-math: #2563eb;
+  --color-world-math-light: #60a5fa;
   --color-world-logic: #7c3aed;
+  --color-world-logic-light: #a78bfa;
   --color-world-quick: #16a34a;
+  --color-world-quick-light: #4ade80;
 
   --shadow-pop: 0 14px 28px -14px rgba(17, 14, 27, 0.32), 0 2px 6px -1px rgba(17, 14, 27, 0.12);
   --shadow-soft: 0 8px 18px -10px rgba(17, 14, 27, 0.22), 0 1px 3px rgba(17, 14, 27, 0.08);
@@ -90,14 +97,30 @@
   body::after {
     content: "";
     position: fixed;
-    inset: 0;
+    inset: -6%;
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(34% 22% at 10% 6%, rgba(37, 99, 235, 0.14), transparent 70%),
-      radial-gradient(36% 26% at 94% 4%, rgba(219, 39, 119, 0.1), transparent 70%),
-      radial-gradient(40% 28% at 12% 98%, rgba(22, 163, 74, 0.12), transparent 70%),
-      radial-gradient(38% 26% at 96% 94%, rgba(124, 58, 237, 0.12), transparent 70%);
+      radial-gradient(34% 22% at 10% 6%, rgba(37, 99, 235, 0.16), transparent 70%),
+      radial-gradient(36% 26% at 94% 4%, rgba(219, 39, 119, 0.12), transparent 70%),
+      radial-gradient(40% 28% at 12% 98%, rgba(22, 163, 74, 0.14), transparent 70%),
+      radial-gradient(38% 26% at 96% 94%, rgba(124, 58, 237, 0.14), transparent 70%);
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::after {
+      animation: none;
+    }
+  }
+
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(-1.5%, 1.5%, 0) scale(1.04);
+    }
   }
 
   h1,

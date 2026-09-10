@@ -16,16 +16,22 @@ const WORLDS: World[] = [
   { to: "/reflexo", title: "Reflexo Rápido", subtitle: "Pense rápido, jogue melhor", tone: "quick", emoji: "⚡" },
 ];
 
-const TONE_BG: Record<World["tone"], string> = {
-  math: "bg-world-math",
-  logic: "bg-world-logic",
-  quick: "bg-world-quick",
+const TONE_GRADIENT: Record<World["tone"], string> = {
+  math: "bg-gradient-to-br from-world-math-light to-world-math",
+  logic: "bg-gradient-to-br from-world-logic-light to-world-logic",
+  quick: "bg-gradient-to-br from-world-quick-light to-world-quick",
 };
 
 const TONE_SOFT: Record<World["tone"], string> = {
   math: "bg-world-math/10",
   logic: "bg-world-logic/10",
   quick: "bg-world-quick/10",
+};
+
+const TONE_GLOW: Record<World["tone"], string> = {
+  math: "0 14px 26px -14px rgba(37,99,235,0.45)",
+  logic: "0 14px 26px -14px rgba(124,58,237,0.4)",
+  quick: "0 14px 26px -14px rgba(22,163,74,0.4)",
 };
 
 export function HubPage() {
@@ -59,14 +65,16 @@ export function HubPage() {
           >
             <Link to={world.to} className="block">
               <motion.div
-                whileHover={{ y: -4, rotate: -0.5 }}
+                whileHover={{ y: -4 }}
                 whileTap={{ y: 2 }}
                 transition={{ type: "spring", stiffness: 500, damping: 28 }}
-                className="flex items-center gap-4 rounded-[20px] border border-line bg-card p-4 shadow-soft"
+                style={{ boxShadow: TONE_GLOW[world.tone] }}
+                className="flex items-center gap-4 rounded-[20px] border border-line bg-card p-4"
               >
                 <span
-                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[16px] text-4xl leading-none shadow-soft ${TONE_BG[world.tone]}`}
+                  className={`relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-[16px] text-4xl leading-none ${TONE_GRADIENT[world.tone]}`}
                 >
+                  <span className="pointer-events-none absolute inset-x-2 top-1.5 h-3 rounded-full bg-white/25 blur-[2px]" />
                   {world.emoji}
                 </span>
                 <div className="min-w-0 flex-1">
