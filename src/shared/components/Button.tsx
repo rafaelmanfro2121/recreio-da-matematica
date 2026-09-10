@@ -37,7 +37,7 @@ export function Button({
   className?: string;
 } & HTMLMotionProps<"button">) {
   const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-2xl border-[3px] border-ink font-display font-bold text-ink shadow-pop transition-colors select-none disabled:opacity-50 disabled:pointer-events-none";
+    "relative inline-flex items-center justify-center gap-2 rounded-[20px] border-[3px] border-ink font-display font-bold text-ink shadow-pop transition-colors select-none disabled:opacity-50 disabled:pointer-events-none";
 
   const variantClass =
     variant === "solid"

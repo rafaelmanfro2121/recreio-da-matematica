@@ -22,15 +22,32 @@ const TONE_BG: Record<World["tone"], string> = {
   quick: "bg-world-quick",
 };
 
+const TONE_SOFT: Record<World["tone"], string> = {
+  math: "bg-world-math/10",
+  logic: "bg-world-logic/10",
+  quick: "bg-world-quick/10",
+};
+
 export function HubPage() {
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col items-center gap-8 px-5 py-10">
-      <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-        <h1 className="font-display text-4xl font-extrabold text-ink">Recreio</h1>
-        <p className="mt-1 font-body font-semibold text-ink-soft">Escolha para onde ir hoje</p>
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col items-center gap-9 px-5 pb-12 pt-10">
+      <motion.div
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col items-center gap-1 text-center"
+      >
+        <span className="rounded-full border-[3px] border-ink bg-card px-4 py-1 font-display text-xs font-bold uppercase tracking-wide text-ink-soft shadow-soft">
+          Recreio
+        </span>
+        <h1 className="font-display text-[2.6rem] font-extrabold leading-tight text-ink">
+          Bora <span className="text-world-math">brincar</span>?
+        </h1>
+        <p className="font-body font-semibold text-ink-soft">Escolha um mundo para explorar hoje</p>
       </motion.div>
 
-      <Mascot name="a" mood="happy" speech="Bora brincar um pouco?" />
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
+        <Mascot name="a" mood="happy" speech="Bora brincar um pouco?" size={100} />
+      </motion.div>
 
       <div className="flex w-full flex-col gap-5">
         {WORLDS.map((world, i) => (
@@ -38,20 +55,30 @@ export function HubPage() {
             key={world.to}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + i * 0.1, type: "spring", stiffness: 300, damping: 24 }}
+            transition={{ delay: 0.15 + i * 0.1, type: "spring", stiffness: 300, damping: 24 }}
           >
             <Link to={world.to} className="block">
               <motion.div
-                whileHover={{ y: -3, rotate: -0.4 }}
-                whileTap={{ y: 3 }}
+                whileHover={{ y: -4, rotate: -0.5 }}
+                whileTap={{ y: 2 }}
                 transition={{ type: "spring", stiffness: 500, damping: 28 }}
-                className={`flex items-center gap-4 rounded-3xl border-[3px] border-ink p-5 shadow-pop ${TONE_BG[world.tone]}`}
+                className="flex items-center gap-4 rounded-[28px] border-[3px] border-ink bg-card p-4 shadow-pop"
               >
-                <span className="text-5xl leading-none">{world.emoji}</span>
-                <div>
+                <span
+                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[20px] border-[3px] border-ink text-4xl leading-none ${TONE_BG[world.tone]}`}
+                >
+                  {world.emoji}
+                </span>
+                <div className="min-w-0 flex-1">
                   <h2 className="font-display text-xl font-bold text-ink">{world.title}</h2>
-                  <p className="font-body text-sm font-semibold text-ink/80">{world.subtitle}</p>
+                  <p className="font-body text-sm font-semibold leading-snug text-ink-soft">{world.subtitle}</p>
                 </div>
+                <span
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold text-ink ${TONE_SOFT[world.tone]}`}
+                  aria-hidden="true"
+                >
+                  →
+                </span>
               </motion.div>
             </Link>
           </motion.div>

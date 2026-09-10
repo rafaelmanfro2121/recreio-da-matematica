@@ -20,37 +20,41 @@
   --font-display: "Baloo 2", ui-rounded, sans-serif;
   --font-body: "Nunito", ui-rounded, "Segoe UI", sans-serif;
 
-  /* Notebook / paper base */
-  --color-paper: #fdf6e6;
-  --color-paper-line: #cdd6e8;
-  --color-margin: #e2685c;
-  --color-ink: #2b2440;
+  /* Base surfaces */
+  --color-paper: #f3f1ff;
+  --color-ink: #211c33;
   --color-ink-soft: #6b6280;
-  --color-card: #fffdf7;
+  --color-card: #ffffff;
 
   /* Semantic */
-  --color-leaf: #2fae66;
-  --color-coral: #ef5b4e;
-  --color-sun: #ffb627;
+  --color-leaf: #22c55e;
+  --color-coral: #f76e6e;
+  --color-sun: #fbbf24;
   --color-board: #1f6f5c;
 
   /* Math operations */
-  --color-op-add: #2e6ff2;
-  --color-op-subtract: #f2994a;
-  --color-op-multiply: #e8478b;
-  --color-op-divide: #8b5cf6;
+  --color-op-add: #3b82f6;
+  --color-op-subtract: #fb923c;
+  --color-op-multiply: #ec4899;
+  --color-op-divide: #a855f7;
 
   /* World identities (hub) */
-  --color-world-math: #2e6ff2;
-  --color-world-logic: #8b5cf6;
-  --color-world-quick: #16a34a;
+  --color-world-math: #3b82f6;
+  --color-world-logic: #a855f7;
+  --color-world-quick: #22c55e;
 
-  --shadow-pop: 0 10px 0 0 rgba(43, 36, 64, 0.12), 0 14px 28px -10px rgba(20, 15, 40, 0.35);
+  --shadow-pop: 0 6px 0 0 rgba(33, 28, 51, 0.16), 0 18px 30px -14px rgba(33, 28, 51, 0.4);
+  --shadow-soft: 0 2px 0 0 rgba(33, 28, 51, 0.1), 0 10px 20px -12px rgba(33, 28, 51, 0.3);
 }
 
 @layer base {
   * {
     box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   html,
@@ -60,20 +64,39 @@
   }
 
   body {
-    background-color: var(--color-paper);
+    position: relative;
     color: var(--color-ink);
     font-family: var(--font-body);
-    min-height: 100vh;
-    background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 39px,
-        var(--color-paper-line) 39px,
-        var(--color-paper-line) 40px
-      ),
-      linear-gradient(to right, transparent 0 63px, var(--color-margin) 63px 64px, transparent 64px);
-    background-position: 0 92px, 0 0;
-    -webkit-text-size-adjust: 100%;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Fixed decorative sky, painted once behind all content -- real positioned
+     boxes rather than background-attachment:fixed, which iOS Safari ignores. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(175deg, #eaf1ff 0%, #f6f1ff 45%, #fdf3ec 100%);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 26% at 12% 8%, rgba(59, 130, 246, 0.22), transparent 70%),
+      radial-gradient(40% 30% at 92% 6%, rgba(236, 72, 153, 0.16), transparent 70%),
+      radial-gradient(46% 34% at 15% 96%, rgba(34, 197, 94, 0.18), transparent 70%),
+      radial-gradient(42% 32% at 94% 92%, rgba(168, 85, 247, 0.18), transparent 70%);
   }
 
   h1,
@@ -81,6 +104,12 @@
   h3 {
     font-family: var(--font-display);
     text-wrap: balance;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   button {

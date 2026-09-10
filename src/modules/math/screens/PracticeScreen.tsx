@@ -71,7 +71,7 @@ export function PracticeScreen() {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col gap-6 px-5 py-8">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-5 py-8">
       <Link to="/matematica" className="w-fit">
         <Button tone="ink" variant="ghost" size="sm">
           ← Mapa

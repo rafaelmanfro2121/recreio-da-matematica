@@ -20,7 +20,7 @@ export function LevelMapScreen() {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col gap-6 px-5 py-8">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-5 py-8">
       <Link to="/" className="w-fit">
         <Button tone="ink" variant="ghost" size="sm">
           ← Recreio
@@ -53,7 +53,7 @@ export function LevelMapScreen() {
             >
               <span
                 className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[3px] border-ink font-display text-lg font-bold text-ink ${
-                  unlocked ? TONE_BG[level.tone] : "bg-paper-line"
+                  unlocked ? TONE_BG[level.tone] : "bg-paper"
                 }`}
               >
                 {unlocked ? level.symbolText : "🔒"}

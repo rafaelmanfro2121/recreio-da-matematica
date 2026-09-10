@@ -22,7 +22,7 @@ export function QuickThinkModule() {
   }
 
   return (
-    <div className="mx-auto min-h-screen max-w-xl px-5 py-8">
+    <div className="mx-auto min-h-dvh max-w-xl px-5 py-8">
       {phase === "intro" && <IntroScreen onStart={() => setPhase("play")} />}
       {phase === "play" && <PlayScreen key={playKey} onFinish={handleFinish} />}
       {phase === "summary" && lastStats && <RoundSummaryScreen stats={lastStats} onPlayAgain={handlePlayAgain} />}

@@ -20,7 +20,7 @@ export function FeedbackBanner({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 420, damping: 28 }}
-          className={`rounded-2xl border-[3px] border-ink px-5 py-4 shadow-pop ${
+          className={`rounded-[22px] border-[3px] border-ink px-5 py-4 shadow-pop ${
             status === "correct" ? "bg-leaf/25" : "bg-sun/30"
           } ${className}`}
         >

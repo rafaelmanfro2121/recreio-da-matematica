@@ -17,8 +17,8 @@ export default defineConfig({
         short_name: "Recreio",
         description:
           "Jogos de matemática, lógica e raciocínio rápido para crianças de 7 a 10 anos.",
-        theme_color: "#fdf6e6",
-        background_color: "#fdf6e6",
+        theme_color: "#eaf1ff",
+        background_color: "#eaf1ff",
         display: "standalone",
         start_url: "/recreio-da-matematica/",
         scope: "/recreio-da-matematica/",

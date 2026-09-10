@@ -87,7 +87,7 @@ export function PlayScreen({ onRoundComplete }: { onRoundComplete: (stats: Round
   }
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col gap-6 px-5 py-8">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-5 py-8">
       {showMilestone && <Confetti count={40} />}
 
       <div className="flex items-center justify-between gap-4">

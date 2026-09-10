@@ -33,7 +33,7 @@ export function RoundSummaryScreen({
   }, []);
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center gap-6 px-5 py-10 text-center">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col items-center justify-center gap-6 px-5 py-10 text-center">
       {showConfetti && <Confetti />}
 
       <Mascot name="b" mood={strongRound ? "cheer" : "happy"} speech={levelCompletePhrase(perfect)} />
