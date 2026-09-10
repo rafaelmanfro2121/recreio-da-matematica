@@ -1,0 +1,15 @@
+{
+  "name": "Recreio da Matemática",
+  "short_name": "Recreio",
+  "description": "Jogos de matemática, lógica e raciocínio rápido para crianças de 7 a 10 anos.",
+  "theme_color": "#eaf1ff",
+  "background_color": "#eaf1ff",
+  "display": "standalone",
+  "start_url": "/recreio-da-matematica/",
+  "scope": "/recreio-da-matematica/",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -6,6 +6,7 @@ import { Ticks } from "../../../shared/components/Ticks";
 import { FeedbackBanner } from "../../../shared/components/FeedbackBanner";
 import { Confetti } from "../../../shared/components/Confetti";
 import { Keypad } from "./Keypad";
+import { logActivity } from "../../../shared/activity";
 import { useStoredState } from "../../../shared/storage";
 import { playCorrectSound, playLevelUpSound, playTapSound, playWrongSound } from "../../../shared/sounds";
 import { correctPhrase, tryAgainPhrase } from "../../../shared/copy";
@@ -89,6 +90,7 @@ export function TabuadaScreen() {
 
     setResult({ elapsedMs, starsEarned: stars, newRecord });
     setSubView("summary");
+    logActivity(Math.max(0, TABUADA_TABLES.length - finalMisses), TABUADA_TABLES.length);
     if (stars === 3) {
       playLevelUpSound();
       setShowConfetti(true);

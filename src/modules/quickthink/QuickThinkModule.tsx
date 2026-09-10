@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logActivity } from "../../shared/activity";
 import { IntroScreen } from "./screens/IntroScreen";
 import { PlayScreen } from "./screens/PlayScreen";
 import { RoundSummaryScreen } from "./screens/RoundSummaryScreen";
@@ -12,6 +13,7 @@ export function QuickThinkModule() {
   const [playKey, setPlayKey] = useState(0);
 
   function handleFinish(stats: SessionStats) {
+    logActivity(stats.correctCount, stats.totalRounds);
     setLastStats(stats);
     setPhase("summary");
   }

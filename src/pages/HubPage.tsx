@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Mascot } from "../shared/components/Mascot";
+import { useMemo } from "react";
+import { WeeklyChart } from "../shared/components/WeeklyChart";
+import { computeStreak, getLastNDays } from "../shared/activity";
 
 type World = {
   to: string;
@@ -34,34 +36,58 @@ const TONE_GLOW: Record<World["tone"], string> = {
   quick: "0 14px 26px -14px rgba(22,163,74,0.4)",
 };
 
+function greeting(): string {
+  const h = new Date().getHours();
+  if (h < 12) return "Bom dia";
+  if (h < 18) return "Boa tarde";
+  return "Boa noite";
+}
+
 export function HubPage() {
+  const days = useMemo(() => getLastNDays(7), []);
+  const streak = useMemo(() => computeStreak(), []);
+  const weekTotal = useMemo(() => days.reduce((sum, d) => sum + d.correct, 0), [days]);
+
   return (
-    <div className="mx-auto flex min-h-dvh max-w-xl flex-col items-center gap-9 px-5 pb-12 pt-10">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-5 pb-12 pt-10">
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between">
+        <div>
+          <p className="font-body text-sm font-bold text-ink-soft">{greeting()} 👋</p>
+          <h1 className="font-display text-2xl font-extrabold leading-tight text-ink">Recreio</h1>
+        </div>
+        {streak > 0 && (
+          <div className="flex items-center gap-1.5 rounded-full border border-line bg-card px-3.5 py-1.5 shadow-soft">
+            <span className="text-base leading-none">🔥</span>
+            <span className="font-display text-sm font-extrabold text-ink">{streak}</span>
+          </div>
+        )}
+      </motion.div>
+
       <motion.div
-        initial={{ opacity: 0, y: -12 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-center gap-1 text-center"
+        transition={{ delay: 0.08, type: "spring", stiffness: 280, damping: 26 }}
+        className="glass-card rounded-[24px] p-5"
+        style={{ boxShadow: "var(--shadow-glass)" }}
       >
-        <span className="rounded-full border border-line bg-card px-4 py-1 font-display text-xs font-bold uppercase tracking-[0.14em] text-ink-soft shadow-soft">
-          Recreio
-        </span>
-        <h1 className="font-display text-[2.4rem] font-extrabold leading-tight text-ink">
-          Bora <span className="text-world-math">jogar</span>?
-        </h1>
-        <p className="font-body font-semibold text-ink-soft">Escolha um mundo para explorar hoje</p>
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-display text-base font-bold text-ink">Sua evolução</h2>
+          <p className="font-body text-xs font-bold text-ink-soft">
+            {weekTotal > 0 ? `${weekTotal} acertos essa semana` : "Vamos começar?"}
+          </p>
+        </div>
+        <div className="mt-4">
+          <WeeklyChart days={days} />
+        </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
-        <Mascot name="a" mood="happy" speech="Bora jogar um pouco?" size={100} />
-      </motion.div>
-
-      <div className="flex w-full flex-col gap-5">
+      <div className="flex w-full flex-col gap-4">
         {WORLDS.map((world, i) => (
           <motion.div
             key={world.to}
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + i * 0.1, type: "spring", stiffness: 300, damping: 24 }}
+            transition={{ delay: 0.16 + i * 0.08, type: "spring", stiffness: 300, damping: 24 }}
           >
             <Link to={world.to} className="block">
               <motion.div

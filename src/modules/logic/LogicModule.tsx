@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logActivity } from "../../shared/activity";
 import { IntroScreen } from "./screens/IntroScreen";
 import { PlayScreen } from "./screens/PlayScreen";
 import { RoundSummaryScreen } from "./screens/RoundSummaryScreen";
@@ -42,6 +43,7 @@ export function LogicModule() {
     <PlayScreen
       key={roundKey}
       onRoundComplete={(stats) => {
+        logActivity(stats.correct, stats.total);
         setLastRound(stats);
         setPhase("summary");
       }}

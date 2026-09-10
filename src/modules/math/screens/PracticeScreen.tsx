@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../../shared/components/Button";
+import { logActivity } from "../../../shared/activity";
 import { LEVELS } from "../data/levels";
 import { generateRound, QUESTIONS_PER_ROUND } from "../engine/generateQuestion";
 import { useMathProgress } from "../engine/useMathProgress";
@@ -56,7 +57,9 @@ export function PracticeScreen() {
     const nextResults = [...results, opCorrect && numericCorrect];
     setResults(nextResults);
     if (nextResults.length === QUESTIONS_PER_ROUND) {
-      completeLevel(level!.id, nextResults.filter(Boolean).length, QUESTIONS_PER_ROUND);
+      const correctCount = nextResults.filter(Boolean).length;
+      completeLevel(level!.id, correctCount, QUESTIONS_PER_ROUND);
+      logActivity(correctCount, QUESTIONS_PER_ROUND);
     } else {
       setIndex((i) => i + 1);
       setSubStep("story");
