@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useMemo } from "react";
 import { WeeklyChart } from "../shared/components/WeeklyChart";
+import { AnimatedNumber } from "../shared/components/AnimatedNumber";
 import { computeStreak, getLastNDays } from "../shared/activity";
 
 type World = {
@@ -19,21 +20,15 @@ const WORLDS: World[] = [
 ];
 
 const TONE_GRADIENT: Record<World["tone"], string> = {
-  math: "bg-gradient-to-br from-world-math-light to-world-math",
-  logic: "bg-gradient-to-br from-world-logic-light to-world-logic",
-  quick: "bg-gradient-to-br from-world-quick-light to-world-quick",
-};
-
-const TONE_SOFT: Record<World["tone"], string> = {
-  math: "bg-world-math/10",
-  logic: "bg-world-logic/10",
-  quick: "bg-world-quick/10",
+  math: "linear-gradient(135deg, var(--color-world-math-light), var(--color-world-math) 70%)",
+  logic: "linear-gradient(135deg, var(--color-world-logic-light), var(--color-world-logic) 70%)",
+  quick: "linear-gradient(135deg, var(--color-world-quick-light), var(--color-world-quick) 70%)",
 };
 
 const TONE_GLOW: Record<World["tone"], string> = {
-  math: "0 14px 26px -14px rgba(37,99,235,0.45)",
-  logic: "0 14px 26px -14px rgba(124,58,237,0.4)",
-  quick: "0 14px 26px -14px rgba(22,163,74,0.4)",
+  math: "0 18px 32px -16px rgba(37,99,235,0.55)",
+  logic: "0 18px 32px -16px rgba(124,58,237,0.5)",
+  quick: "0 18px 32px -16px rgba(22,163,74,0.5)",
 };
 
 function greeting(): string {
@@ -43,80 +38,112 @@ function greeting(): string {
   return "Boa noite";
 }
 
+function WorldCard({ world, index, large }: { world: World; index: number; large?: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ delay: 0.35 + index * 0.09, type: "spring", stiffness: 280, damping: 22 }}
+      className={large ? "" : "flex-1"}
+    >
+      <Link to={world.to} className="block h-full">
+        <motion.div
+          whileHover={{ y: -5, scale: 1.015 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 460, damping: 26 }}
+          style={{ background: TONE_GRADIENT[world.tone], boxShadow: TONE_GLOW[world.tone] }}
+          className={`relative flex h-full overflow-hidden rounded-[24px] text-white ${
+            large ? "flex-row items-center gap-5 p-6" : "flex-col justify-between gap-4 p-5"
+          }`}
+        >
+          <span className="pointer-events-none absolute -right-6 -top-8 h-28 w-28 rounded-full bg-white/10 blur-md" aria-hidden="true" />
+          <motion.span
+            animate={{ y: [0, -7, 0] }}
+            transition={{ duration: 3.2 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
+            className={large ? "text-6xl leading-none drop-shadow-sm" : "text-4xl leading-none drop-shadow-sm"}
+          >
+            {world.emoji}
+          </motion.span>
+          <div className={large ? "flex-1" : ""}>
+            <h2 className={`font-display font-extrabold ${large ? "text-2xl" : "text-base"}`}>{world.title}</h2>
+            <p className={`font-body font-semibold text-white/85 ${large ? "mt-1 text-sm" : "mt-0.5 text-xs leading-snug"}`}>
+              {world.subtitle}
+            </p>
+          </div>
+          <span
+            className={`flex shrink-0 items-center justify-center rounded-full bg-white/20 font-bold backdrop-blur-sm ${
+              large ? "h-11 w-11 text-xl" : "h-8 w-8 text-base"
+            }`}
+            aria-hidden="true"
+          >
+            →
+          </span>
+        </motion.div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export function HubPage() {
   const days = useMemo(() => getLastNDays(7), []);
   const streak = useMemo(() => computeStreak(), []);
   const weekTotal = useMemo(() => days.reduce((sum, d) => sum + d.correct, 0), [days]);
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-6 px-5 pb-12 pt-10">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col gap-5 px-5 pb-12 pt-10">
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between">
         <div>
           <p className="font-body text-sm font-bold text-ink-soft">{greeting()} 👋</p>
-          <h1 className="font-display text-2xl font-extrabold leading-tight text-ink">Recreio</h1>
+          <h1 className="font-display text-3xl font-extrabold leading-tight text-ink">Recreio</h1>
         </div>
-        {streak > 0 && (
-          <div className="flex items-center gap-1.5 rounded-full border border-line bg-card px-3.5 py-1.5 shadow-soft">
-            <span className="text-base leading-none">🔥</span>
-            <span className="font-display text-sm font-extrabold text-ink">{streak}</span>
-          </div>
-        )}
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.08, type: "spring", stiffness: 280, damping: 26 }}
-        className="glass-card rounded-[24px] p-5"
-        style={{ boxShadow: "var(--shadow-glass)" }}
+        initial={{ opacity: 0, y: 20, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 0.08, type: "spring", stiffness: 260, damping: 24 }}
+        style={{
+          background: "linear-gradient(135deg, var(--color-world-math-light), var(--color-world-math) 55%, var(--color-world-logic) 130%)",
+          boxShadow: "0 24px 44px -18px rgba(37,99,235,0.5)",
+        }}
+        className="relative overflow-hidden rounded-[28px] p-6 text-white"
       >
-        <div className="flex items-baseline justify-between">
-          <h2 className="font-display text-base font-bold text-ink">Sua evolução</h2>
-          <p className="font-body text-xs font-bold text-ink-soft">
-            {weekTotal > 0 ? `${weekTotal} acertos essa semana` : "Vamos começar?"}
-          </p>
+        <motion.span
+          className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10"
+          animate={{ y: [0, -10, 0], scale: [1, 1.06, 1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          aria-hidden="true"
+        />
+        <span className="pointer-events-none absolute -bottom-8 -left-8 h-28 w-28 rounded-full bg-white/10" aria-hidden="true" />
+
+        <div className="relative flex items-start justify-between">
+          <h2 className="font-display text-base font-bold text-white/95">Sua evolução</h2>
+          {streak > 0 && (
+            <div className="flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 backdrop-blur-sm">
+              <span className="text-sm leading-none">🔥</span>
+              <AnimatedNumber value={streak} className="font-display text-sm font-extrabold" />
+            </div>
+          )}
         </div>
-        <div className="mt-4">
-          <WeeklyChart days={days} />
+
+        <div className="relative mt-3 flex items-end justify-between gap-4">
+          <div>
+            <AnimatedNumber value={weekTotal} className="font-display text-5xl font-extrabold leading-none tabular-nums" />
+            <p className="mt-1.5 font-body text-xs font-bold text-white/75">acertos essa semana</p>
+          </div>
+        </div>
+
+        <div className="relative mt-5">
+          <WeeklyChart days={days} light />
         </div>
       </motion.div>
 
-      <div className="flex w-full flex-col gap-4">
-        {WORLDS.map((world, i) => (
-          <motion.div
-            key={world.to}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.16 + i * 0.08, type: "spring", stiffness: 300, damping: 24 }}
-          >
-            <Link to={world.to} className="block">
-              <motion.div
-                whileHover={{ y: -4 }}
-                whileTap={{ y: 2 }}
-                transition={{ type: "spring", stiffness: 500, damping: 28 }}
-                style={{ boxShadow: TONE_GLOW[world.tone] }}
-                className="flex items-center gap-4 rounded-[20px] border border-line bg-card p-4"
-              >
-                <span
-                  className={`relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-[16px] text-4xl leading-none ${TONE_GRADIENT[world.tone]}`}
-                >
-                  <span className="pointer-events-none absolute inset-x-2 top-1.5 h-3 rounded-full bg-white/25 blur-[2px]" />
-                  {world.emoji}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <h2 className="font-display text-lg font-bold text-ink">{world.title}</h2>
-                  <p className="font-body text-sm font-semibold leading-snug text-ink-soft">{world.subtitle}</p>
-                </div>
-                <span
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold text-ink-soft ${TONE_SOFT[world.tone]}`}
-                  aria-hidden="true"
-                >
-                  →
-                </span>
-              </motion.div>
-            </Link>
-          </motion.div>
-        ))}
+      <div className="flex flex-col gap-4">
+        <WorldCard world={WORLDS[0]} index={0} large />
+        <div className="flex gap-4">
+          <WorldCard world={WORLDS[1]} index={1} />
+          <WorldCard world={WORLDS[2]} index={2} />
+        </div>
       </div>
     </div>
   );
