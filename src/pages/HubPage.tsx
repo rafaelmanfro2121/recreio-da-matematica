@@ -36,17 +36,17 @@ export function HubPage() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-center gap-1 text-center"
       >
-        <span className="rounded-full border-[3px] border-ink bg-card px-4 py-1 font-display text-xs font-bold uppercase tracking-wide text-ink-soft shadow-soft">
+        <span className="rounded-full border border-line bg-card px-4 py-1 font-display text-xs font-bold uppercase tracking-[0.14em] text-ink-soft shadow-soft">
           Recreio
         </span>
-        <h1 className="font-display text-[2.6rem] font-extrabold leading-tight text-ink">
-          Bora <span className="text-world-math">brincar</span>?
+        <h1 className="font-display text-[2.4rem] font-extrabold leading-tight text-ink">
+          Bora <span className="text-world-math">jogar</span>?
         </h1>
         <p className="font-body font-semibold text-ink-soft">Escolha um mundo para explorar hoje</p>
       </motion.div>
 
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
-        <Mascot name="a" mood="happy" speech="Bora brincar um pouco?" size={100} />
+        <Mascot name="a" mood="happy" speech="Bora jogar um pouco?" size={100} />
       </motion.div>
 
       <div className="flex w-full flex-col gap-5">
@@ -62,19 +62,19 @@ export function HubPage() {
                 whileHover={{ y: -4, rotate: -0.5 }}
                 whileTap={{ y: 2 }}
                 transition={{ type: "spring", stiffness: 500, damping: 28 }}
-                className="flex items-center gap-4 rounded-[28px] border-[3px] border-ink bg-card p-4 shadow-pop"
+                className="flex items-center gap-4 rounded-[20px] border border-line bg-card p-4 shadow-soft"
               >
                 <span
-                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[20px] border-[3px] border-ink text-4xl leading-none ${TONE_BG[world.tone]}`}
+                  className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[16px] text-4xl leading-none shadow-soft ${TONE_BG[world.tone]}`}
                 >
                   {world.emoji}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h2 className="font-display text-xl font-bold text-ink">{world.title}</h2>
+                  <h2 className="font-display text-lg font-bold text-ink">{world.title}</h2>
                   <p className="font-body text-sm font-semibold leading-snug text-ink-soft">{world.subtitle}</p>
                 </div>
                 <span
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold text-ink ${TONE_SOFT[world.tone]}`}
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold text-ink-soft ${TONE_SOFT[world.tone]}`}
                   aria-hidden="true"
                 >
                   →

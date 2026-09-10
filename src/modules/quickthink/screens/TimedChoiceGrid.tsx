@@ -60,7 +60,7 @@ export function TimedChoiceGrid({
       </div>
 
       {challenge.sequence && (
-        <div className="flex flex-wrap items-center justify-center gap-2 rounded-2xl border-[3px] border-ink bg-paper px-4 py-3 text-2xl shadow-pop">
+        <div className="flex flex-wrap items-center justify-center gap-2 rounded-[16px] border border-line bg-paper px-4 py-3 text-2xl shadow-soft">
           {challenge.sequence.map((item, i) => (
             <span key={i}>{item}</span>
           ))}
@@ -83,8 +83,12 @@ export function TimedChoiceGrid({
               whileHover={status === "active" ? { y: -2 } : undefined}
               whileTap={status === "active" ? { y: 3 } : undefined}
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              className={`min-h-[56px] rounded-2xl border-[3px] border-ink px-4 py-3 text-center font-body text-base font-bold leading-snug text-ink shadow-pop transition-colors ${
-                isCorrectOption ? "bg-leaf" : isWrongSelected ? "bg-coral" : "bg-card"
+              className={`min-h-[56px] rounded-[14px] border px-4 py-3 text-center font-body text-base font-bold leading-snug shadow-soft transition-colors ${
+                isCorrectOption
+                  ? "border-leaf bg-leaf/15 text-ink"
+                  : isWrongSelected
+                    ? "border-coral bg-coral/10 text-ink"
+                    : "border-line bg-card text-ink"
               }`}
             >
               {option}

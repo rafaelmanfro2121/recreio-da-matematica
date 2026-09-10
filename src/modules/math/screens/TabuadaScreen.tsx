@@ -176,7 +176,7 @@ export function TabuadaScreen() {
                   whileTap={{ y: 2 }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   onClick={() => startTable(t)}
-                  className="flex flex-col items-center gap-1.5 rounded-2xl border-[3px] border-ink bg-card px-3 py-4 shadow-pop"
+                  className="flex flex-col items-center gap-1.5 rounded-[16px] border border-line bg-card px-3 py-4 shadow-soft"
                 >
                   <span className="font-display text-2xl font-extrabold text-ink">{t}×</span>
                   <span className="font-body text-xs font-bold text-ink-soft">Tabuada do {t}</span>
@@ -206,7 +206,7 @@ export function TabuadaScreen() {
           <motion.div
             animate={feedback === "wrong" ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center justify-center gap-3 rounded-3xl border-[3px] border-ink bg-ink px-4 py-8 font-display text-3xl font-bold text-card shadow-pop"
+            className="flex items-center justify-center gap-3 rounded-[20px] bg-ink px-4 py-8 font-display text-3xl font-bold text-card shadow-pop"
           >
             <span>{currentFact.table}</span>
             <span>×</span>

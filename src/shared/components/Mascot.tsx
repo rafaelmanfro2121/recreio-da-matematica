@@ -87,10 +87,10 @@ export function Mascot({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 400, damping: 26 }}
-            className="relative max-w-xs rounded-[22px] border-[3px] border-ink bg-card px-4 py-3 font-body text-[15px] font-semibold leading-snug text-ink shadow-pop"
+            className="relative max-w-xs rounded-[16px] border border-line bg-card px-4 py-3 font-body text-[15px] font-semibold leading-snug text-ink shadow-soft"
           >
             {speech}
-            <span className="absolute -left-2 bottom-3 h-4 w-4 rotate-45 border-b-[3px] border-l-[3px] border-ink bg-card" />
+            <span className="absolute -left-2 bottom-3 h-4 w-4 rotate-45 border-b border-l border-line bg-card" />
           </motion.div>
         )}
       </AnimatePresence>

@@ -108,14 +108,14 @@ export function SolveStep({
       <p className="font-body text-sm font-semibold text-ink-soft">
         {question.text} {question.question}
       </p>
-      <span className="inline-flex w-fit items-center gap-1.5 rounded-full border-[3px] border-ink bg-card px-3 py-1 font-display text-sm font-bold text-ink shadow-pop">
+      <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1 font-display text-sm font-bold text-ink shadow-soft">
         {meta.symbol} {meta.label}
       </span>
 
       <motion.div
         animate={feedback === "wrong" ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex flex-wrap items-center justify-center gap-3 rounded-3xl border-[3px] border-ink bg-ink px-4 py-7 font-display text-2xl font-bold text-card shadow-pop"
+        className="flex flex-wrap items-center justify-center gap-3 rounded-[20px] bg-ink px-4 py-7 font-display text-2xl font-bold text-card shadow-pop"
       >
         <span>{formatOperand(question.a, question.aFormat)}</span>
         <span>{meta.symbol}</span>

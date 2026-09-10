@@ -47,13 +47,13 @@ export function LevelMapScreen() {
               whileTap={unlocked ? { y: 2 } : undefined}
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
               aria-label={`${level.title}${unlocked ? "" : " (bloqueado)"}`}
-              className={`flex items-center gap-4 rounded-3xl border-[3px] border-ink p-4 text-left shadow-pop ${
+              className={`flex items-center gap-4 rounded-[20px] border border-line p-4 text-left shadow-soft ${
                 unlocked ? "bg-card" : "bg-card/60 opacity-70"
               }`}
             >
               <span
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[3px] border-ink font-display text-lg font-bold text-ink ${
-                  unlocked ? TONE_BG[level.tone] : "bg-paper"
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold ${
+                  unlocked ? `${TONE_BG[level.tone]} text-white` : "bg-paper text-ink-soft"
                 }`}
               >
                 {unlocked ? level.symbolText : "🔒"}
@@ -83,9 +83,9 @@ export function LevelMapScreen() {
           whileHover={{ y: -2 }}
           whileTap={{ y: 2 }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
-          className="flex items-center gap-4 rounded-3xl border-[3px] border-ink bg-card p-4 shadow-pop"
+          className="flex items-center gap-4 rounded-[20px] border border-line bg-card p-4 shadow-soft"
         >
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[3px] border-ink bg-board font-display text-lg font-bold text-card">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-board font-display text-lg font-bold text-white">
             ⏱
           </span>
           <span className="flex-1">

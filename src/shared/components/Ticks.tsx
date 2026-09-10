@@ -8,7 +8,7 @@ export function Ticks({ total, current, className = "" }: { total: number; curre
         return (
           <motion.span
             key={i}
-            className={`h-3 flex-1 rounded-full border-2 border-ink ${filled ? "bg-leaf" : "bg-card"}`}
+            className={`h-2.5 flex-1 rounded-full border border-line ${filled ? "bg-leaf" : "bg-card"}`}
             initial={false}
             animate={{ scale: filled ? 1 : 0.92 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}

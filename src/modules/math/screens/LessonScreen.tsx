@@ -92,7 +92,7 @@ export function LessonScreen() {
 
       <div className="flex flex-col items-center gap-2 text-center">
         <span
-          className={`flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-ink font-display text-2xl font-bold text-ink shadow-pop ${TONE_BG[level.tone]}`}
+          className={`flex h-16 w-16 items-center justify-center rounded-full font-display text-2xl font-bold text-white shadow-soft ${TONE_BG[level.tone]}`}
         >
           {level.symbolText}
         </span>
@@ -115,7 +115,7 @@ export function LessonScreen() {
             <Card key={op} tone="paper">
               <div className="flex items-center gap-3">
                 <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[3px] border-ink font-display text-lg font-bold text-ink ${TONE_BG[meta.tone]}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold text-white ${TONE_BG[meta.tone]}`}
                 >
                   {meta.symbol}
                 </span>
@@ -132,12 +132,12 @@ export function LessonScreen() {
               </p>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {l.keywords.map((k) => (
-                  <span key={k} className="rounded-full border-2 border-ink bg-card px-2.5 py-1 font-body text-xs font-bold text-ink">
+                  <span key={k} className="rounded-full border border-line bg-paper px-2.5 py-1 font-body text-xs font-bold text-ink-soft">
                     {k}
                   </span>
                 ))}
               </div>
-              <div className="mt-4 rounded-2xl border-2 border-ink/15 bg-card p-3">
+              <div className="mt-4 rounded-[14px] border border-line bg-card p-3">
                 <p className="font-body text-sm font-semibold text-ink">
                   {l.example.text} {l.example.question}
                 </p>

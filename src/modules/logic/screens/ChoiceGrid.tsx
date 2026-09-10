@@ -40,12 +40,12 @@ export function ChoiceGrid({
             whileTap={revealed ? undefined : { y: 3 }}
             animate={showAsWrong ? { x: [0, -7, 7, -5, 5, 0] } : { x: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 28 }}
-            className={`flex min-h-[56px] items-center justify-center rounded-2xl border-[3px] px-4 py-3 text-center font-body text-base font-bold leading-snug shadow-pop transition-colors ${
+            className={`flex min-h-[56px] items-center justify-center rounded-[14px] border px-4 py-3 text-center font-body text-base font-bold leading-snug shadow-soft transition-colors ${
               showAsCorrect
-                ? "border-ink bg-leaf/40 text-ink"
+                ? "border-leaf bg-leaf/15 text-ink"
                 : showAsWrong
-                  ? "border-ink bg-coral/35 text-ink"
-                  : "border-ink bg-card text-ink"
+                  ? "border-coral bg-coral/10 text-ink"
+                  : "border-line bg-card text-ink"
             } ${revealed && !showAsCorrect && !showAsWrong ? "opacity-60" : ""} disabled:cursor-default`}
           >
             {option.label}

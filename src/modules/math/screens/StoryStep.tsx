@@ -81,8 +81,8 @@ export function StoryStep({
             initial={{ opacity: 0, scale: 0.92, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 420, damping: 28 }}
-            className={`flex flex-col gap-3 rounded-2xl border-[3px] border-ink px-4 py-3 shadow-pop ${
-              singleOp || opCorrect ? "bg-leaf/25" : "bg-sun/30"
+            className={`flex flex-col gap-3 rounded-[16px] border px-4 py-3 shadow-soft ${
+              singleOp || opCorrect ? "border-leaf/30 bg-leaf/10" : "border-sun/30 bg-sun/10"
             }`}
           >
             <p className="font-body text-sm font-semibold text-ink">

@@ -1,50 +1,51 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Baloo 2";
-  font-weight: 500 800;
+  font-family: "Outfit";
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
-  src: url("/recreio-da-matematica/fonts/baloo2.woff2") format("woff2");
+  src: url("/recreio-da-matematica/fonts/outfit.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Nunito";
-  font-weight: 500 900;
+  font-family: "Manrope";
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
-  src: url("/recreio-da-matematica/fonts/nunito.woff2") format("woff2");
+  src: url("/recreio-da-matematica/fonts/manrope.woff2") format("woff2");
 }
 
 @theme {
-  --font-display: "Baloo 2", ui-rounded, sans-serif;
-  --font-body: "Nunito", ui-rounded, "Segoe UI", sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   /* Base surfaces */
-  --color-paper: #f3f1ff;
-  --color-ink: #211c33;
-  --color-ink-soft: #6b6280;
+  --color-paper: #f4f3f9;
+  --color-ink: #17141f;
+  --color-ink-soft: #5c5668;
   --color-card: #ffffff;
+  --color-line: #e6e3ef;
 
   /* Semantic */
-  --color-leaf: #22c55e;
-  --color-coral: #f76e6e;
-  --color-sun: #fbbf24;
-  --color-board: #1f6f5c;
+  --color-leaf: #15803d;
+  --color-coral: #e11d48;
+  --color-sun: #b45309;
+  --color-board: #0f766e;
 
   /* Math operations */
-  --color-op-add: #3b82f6;
-  --color-op-subtract: #fb923c;
-  --color-op-multiply: #ec4899;
-  --color-op-divide: #a855f7;
+  --color-op-add: #2563eb;
+  --color-op-subtract: #c2410c;
+  --color-op-multiply: #db2777;
+  --color-op-divide: #7c3aed;
 
   /* World identities (hub) */
-  --color-world-math: #3b82f6;
-  --color-world-logic: #a855f7;
-  --color-world-quick: #22c55e;
+  --color-world-math: #2563eb;
+  --color-world-logic: #7c3aed;
+  --color-world-quick: #16a34a;
 
-  --shadow-pop: 0 6px 0 0 rgba(33, 28, 51, 0.16), 0 18px 30px -14px rgba(33, 28, 51, 0.4);
-  --shadow-soft: 0 2px 0 0 rgba(33, 28, 51, 0.1), 0 10px 20px -12px rgba(33, 28, 51, 0.3);
+  --shadow-pop: 0 14px 28px -14px rgba(17, 14, 27, 0.32), 0 2px 6px -1px rgba(17, 14, 27, 0.12);
+  --shadow-soft: 0 8px 18px -10px rgba(17, 14, 27, 0.22), 0 1px 3px rgba(17, 14, 27, 0.08);
 }
 
 @layer base {
@@ -83,7 +84,7 @@
     position: fixed;
     inset: 0;
     z-index: -2;
-    background: linear-gradient(175deg, #eaf1ff 0%, #f6f1ff 45%, #fdf3ec 100%);
+    background: linear-gradient(175deg, #eef1fa 0%, #f5f2fb 45%, #faf3ee 100%);
   }
 
   body::after {
@@ -93,10 +94,10 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(38% 26% at 12% 8%, rgba(59, 130, 246, 0.22), transparent 70%),
-      radial-gradient(40% 30% at 92% 6%, rgba(236, 72, 153, 0.16), transparent 70%),
-      radial-gradient(46% 34% at 15% 96%, rgba(34, 197, 94, 0.18), transparent 70%),
-      radial-gradient(42% 32% at 94% 92%, rgba(168, 85, 247, 0.18), transparent 70%);
+      radial-gradient(34% 22% at 10% 6%, rgba(37, 99, 235, 0.14), transparent 70%),
+      radial-gradient(36% 26% at 94% 4%, rgba(219, 39, 119, 0.1), transparent 70%),
+      radial-gradient(40% 28% at 12% 98%, rgba(22, 163, 74, 0.12), transparent 70%),
+      radial-gradient(38% 26% at 96% 94%, rgba(124, 58, 237, 0.12), transparent 70%);
   }
 
   h1,
@@ -104,6 +105,7 @@
   h3 {
     font-family: var(--font-display);
     text-wrap: balance;
+    letter-spacing: -0.01em;
   }
 
   button,

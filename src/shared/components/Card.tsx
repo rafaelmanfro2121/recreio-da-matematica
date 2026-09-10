@@ -13,7 +13,7 @@ export function Card({
 } & HTMLMotionProps<"div">) {
   return (
     <motion.div
-      className={`rounded-[28px] border-[3px] border-ink ${tone === "paper" ? "bg-paper" : "bg-card"} p-5 shadow-pop ${className}`}
+      className={`rounded-[20px] border border-line ${tone === "paper" ? "bg-paper" : "bg-card"} p-5 shadow-soft ${className}`}
       {...rest}
     >
       {children}

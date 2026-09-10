@@ -37,21 +37,21 @@ export function Button({
   className?: string;
 } & HTMLMotionProps<"button">) {
   const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-[20px] border-[3px] border-ink font-display font-bold text-ink shadow-pop transition-colors select-none disabled:opacity-50 disabled:pointer-events-none";
+    "relative inline-flex items-center justify-center gap-2 rounded-[14px] font-display font-bold transition-colors select-none disabled:opacity-50 disabled:pointer-events-none";
 
   const variantClass =
     variant === "solid"
-      ? `${TONE_STYLES[tone]} text-ink`
+      ? `${TONE_STYLES[tone]} text-white shadow-soft`
       : variant === "outline"
-        ? "bg-card"
-        : "border-transparent shadow-none bg-transparent";
+        ? "border border-line bg-card text-ink shadow-soft"
+        : "text-ink-soft";
 
   return (
     <motion.button
       className={`${base} ${variantClass} ${SIZE_STYLES[size]} ${className}`}
       disabled={disabled}
-      whileHover={disabled ? undefined : { y: -2 }}
-      whileTap={disabled ? undefined : { y: 4, boxShadow: "0 2px 0 0 rgba(43,36,64,0.12)" }}
+      whileHover={disabled ? undefined : { y: -1, filter: "brightness(1.05)" }}
+      whileTap={disabled ? undefined : { y: 1, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}
       {...rest}
     >
