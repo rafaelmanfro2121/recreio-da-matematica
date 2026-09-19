@@ -44,9 +44,14 @@ export function PlayScreen({ onRoundComplete }: { onRoundComplete: (stats: Round
 
   function handleSelect(optionId: string) {
     if (selectedId !== null) return;
-    const correct = optionId === puzzle.correctOptionId;
+    const correct = puzzle.noWrongAnswer ? true : optionId === puzzle.correctOptionId;
+    const message = puzzle.noWrongAnswer
+      ? (puzzle.optionFeedback?.[optionId] ?? correctPhrase())
+      : correct
+        ? correctPhrase()
+        : tryAgainPhrase();
     setSelectedId(optionId);
-    setFeedback({ status: correct ? "correct" : "retry", message: correct ? correctPhrase() : tryAgainPhrase() });
+    setFeedback({ status: correct ? "correct" : "retry", message });
 
     if (correct) playCorrectSound();
     else playWrongSound();
@@ -112,6 +117,7 @@ export function PlayScreen({ onRoundComplete }: { onRoundComplete: (stats: Round
         selectedId={selectedId}
         onSelect={handleSelect}
         columns={puzzle.columns}
+        noWrongAnswer={puzzle.noWrongAnswer}
       />
 
       <FeedbackBanner

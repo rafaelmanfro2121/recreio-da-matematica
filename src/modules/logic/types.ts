@@ -4,7 +4,15 @@
  * a heading + prompt, then a grid of tappable options with immediate feedback.
  */
 
-export type PuzzleType = "sequence" | "odd-one-out" | "riddle" | "cause-effect" | "planning" | "figurative" | "emotion";
+export type PuzzleType =
+  | "sequence"
+  | "odd-one-out"
+  | "riddle"
+  | "cause-effect"
+  | "planning"
+  | "figurative"
+  | "emotion"
+  | "social";
 
 export interface PuzzleOption {
   /** Stable id, unique within this puzzle's options list. */
@@ -29,6 +37,15 @@ export interface Puzzle {
   difficulty: number;
   /** Grid layout hint — 1 column for long text (e.g. planning orderings), 2 for short options. */
   columns: 1 | 2;
+  /**
+   * Social-skills scenarios only: every option is a valid choice, never
+   * right/wrong. ChoiceGrid skips the green/coral styling and PlayScreen
+   * shows the picked option's own line from `optionFeedback` instead of the
+   * generic correct/retry phrase — every pick is acknowledged warmly.
+   */
+  noWrongAnswer?: boolean;
+  /** Per-option feedback text, used instead of `explanation` when noWrongAnswer is set. */
+  optionFeedback?: Record<string, string>;
 }
 
 export interface LogicProgress {

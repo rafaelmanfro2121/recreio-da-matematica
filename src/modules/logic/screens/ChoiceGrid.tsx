@@ -5,6 +5,10 @@ import type { PuzzleOption } from "../types";
  * Shared tap-to-answer grid used by every puzzle type in this module.
  * Selecting an option answers immediately: the chosen card and the correct
  * card both light up, so the child always sees the right answer, even on a miss.
+ *
+ * `noWrongAnswer` (social-skills scenarios) turns off the green/coral verdict
+ * entirely — every option is valid, so a picked card just gets a neutral
+ * highlight and nothing wobbles.
  */
 export function ChoiceGrid({
   options,
@@ -12,12 +16,14 @@ export function ChoiceGrid({
   selectedId,
   onSelect,
   columns,
+  noWrongAnswer = false,
 }: {
   options: PuzzleOption[];
   correctOptionId: string;
   selectedId: string | null;
   onSelect: (id: string) => void;
   columns: 1 | 2;
+  noWrongAnswer?: boolean;
 }) {
   const revealed = selectedId !== null;
 
@@ -26,8 +32,9 @@ export function ChoiceGrid({
       {options.map((option) => {
         const isCorrect = option.id === correctOptionId;
         const isSelected = option.id === selectedId;
-        const showAsCorrect = revealed && isCorrect;
-        const showAsWrong = revealed && isSelected && !isCorrect;
+        const showAsCorrect = !noWrongAnswer && revealed && isCorrect;
+        const showAsWrong = !noWrongAnswer && revealed && isSelected && !isCorrect;
+        const showAsPicked = noWrongAnswer && revealed && isSelected;
 
         return (
           <motion.button
@@ -45,8 +52,10 @@ export function ChoiceGrid({
                 ? "border-leaf bg-leaf/15 text-ink"
                 : showAsWrong
                   ? "border-coral bg-coral/10 text-ink"
-                  : "border-line bg-card text-ink"
-            } ${revealed && !showAsCorrect && !showAsWrong ? "opacity-60" : ""} disabled:cursor-default`}
+                  : showAsPicked
+                    ? "border-world-logic bg-world-logic/10 text-ink"
+                    : "border-line bg-card text-ink"
+            } ${revealed && !showAsCorrect && !showAsWrong && !showAsPicked ? "opacity-60" : ""} disabled:cursor-default`}
           >
             {option.label}
           </motion.button>

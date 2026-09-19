@@ -6,10 +6,11 @@ import { generateOddOneOutPuzzle } from "../data/oddOneOut";
 import { generatePlanningPuzzle } from "../data/planning";
 import { generateRiddlePuzzle } from "../data/riddles";
 import { generateSequencePuzzle } from "../data/sequences";
+import { generateSocialPuzzle } from "../data/socialSkills";
 import { pick } from "./random";
 
-// "figurative" and "emotion" are woven into the same rotation as everything
-// else on purpose — they must never read as a separate, labeled section.
+// "figurative", "emotion" and "social" are woven into the same rotation as
+// everything else on purpose — they must never read as a separate, labeled section.
 const ALL_TYPES: PuzzleType[] = [
   "sequence",
   "odd-one-out",
@@ -18,6 +19,7 @@ const ALL_TYPES: PuzzleType[] = [
   "planning",
   "figurative",
   "emotion",
+  "social",
 ];
 
 function buildByType(type: PuzzleType, difficulty: number): Puzzle {
@@ -36,6 +38,8 @@ function buildByType(type: PuzzleType, difficulty: number): Puzzle {
       return generateFigurativePuzzle(difficulty);
     case "emotion":
       return generateEmotionPuzzle(difficulty);
+    case "social":
+      return generateSocialPuzzle(difficulty);
   }
 }
 
