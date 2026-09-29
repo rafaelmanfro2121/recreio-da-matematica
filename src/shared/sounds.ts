@@ -45,3 +45,9 @@ export const playWrongSound = () => playTone([311.13, 233.08], 0.18, "sawtooth")
 export const playLevelUpSound = () => playTone([523.25, 659.25, 783.99, 1046.5], 0.15, "triangle");
 export const playTapSound = () => playTone([440], 0.05, "square");
 export const playChimeSound = () => playTone([659.25, 987.77], 0.14, "sine");
+
+/** Modo Foco listening games: a bright, memorable "this is the one" cue... */
+export const playFocusTargetSound = () => playTone([880], 0.16, "sine");
+/** ...versus a duller, low "not this one" cue -- clearly distinct even muted-eyes-closed. */
+export const playFocusDecoySound = () => playTone([220], 0.14, "triangle");
+

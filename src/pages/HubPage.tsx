@@ -9,7 +9,7 @@ type World = {
   to: string;
   title: string;
   subtitle: string;
-  tone: "math" | "logic" | "quick";
+  tone: "math" | "logic" | "quick" | "focus";
   emoji: string;
 };
 
@@ -17,18 +17,21 @@ const WORLDS: World[] = [
   { to: "/matematica", title: "Matemática", subtitle: "Contas, histórias e a tabuada", tone: "math", emoji: "🧮" },
   { to: "/mente", title: "Desafios da Mente", subtitle: "Padrões, enigmas e pistas", tone: "logic", emoji: "🧩" },
   { to: "/reflexo", title: "Reflexo Rápido", subtitle: "Pense rápido, jogue melhor", tone: "quick", emoji: "⚡" },
+  { to: "/foco", title: "Modo Foco", subtitle: "Treine sua atenção em 5 minutos", tone: "focus", emoji: "🎯" },
 ];
 
 const TONE_GRADIENT: Record<World["tone"], string> = {
   math: "linear-gradient(135deg, var(--color-world-math-light), var(--color-world-math) 70%)",
   logic: "linear-gradient(135deg, var(--color-world-logic-light), var(--color-world-logic) 70%)",
   quick: "linear-gradient(135deg, var(--color-world-quick-light), var(--color-world-quick) 70%)",
+  focus: "linear-gradient(135deg, var(--color-world-focus-light), var(--color-world-focus) 70%)",
 };
 
 const TONE_GLOW: Record<World["tone"], string> = {
   math: "0 18px 32px -16px rgba(37,99,235,0.55)",
   logic: "0 18px 32px -16px rgba(124,58,237,0.5)",
   quick: "0 18px 32px -16px rgba(22,163,74,0.5)",
+  focus: "0 18px 32px -16px rgba(8,145,178,0.5)",
 };
 
 function greeting(): string {
@@ -38,13 +41,12 @@ function greeting(): string {
   return "Boa noite";
 }
 
-function WorldCard({ world, index, large }: { world: World; index: number; large?: boolean }) {
+function WorldCard({ world, index }: { world: World; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 0.35 + index * 0.09, type: "spring", stiffness: 280, damping: 22 }}
-      className={large ? "" : "flex-1"}
     >
       <Link to={world.to} className="block h-full">
         <motion.div
@@ -52,30 +54,21 @@ function WorldCard({ world, index, large }: { world: World; index: number; large
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 460, damping: 26 }}
           style={{ background: TONE_GRADIENT[world.tone], boxShadow: TONE_GLOW[world.tone] }}
-          className={`relative flex h-full overflow-hidden rounded-[24px] text-white ${
-            large ? "flex-row items-center gap-5 p-6" : "flex-col justify-between gap-4 p-5"
-          }`}
+          className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-[24px] p-5 text-white"
         >
           <span className="pointer-events-none absolute -right-6 -top-8 h-28 w-28 rounded-full bg-white/10 blur-md" aria-hidden="true" />
           <motion.span
             animate={{ y: [0, -7, 0] }}
             transition={{ duration: 3.2 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-            className={large ? "text-6xl leading-none drop-shadow-sm" : "text-4xl leading-none drop-shadow-sm"}
+            className="text-4xl leading-none drop-shadow-sm"
           >
             {world.emoji}
           </motion.span>
-          <div className={large ? "flex-1" : ""}>
-            <h2 className={`font-display font-extrabold ${large ? "text-2xl" : "text-base"}`}>{world.title}</h2>
-            <p className={`font-body font-semibold text-white/85 ${large ? "mt-1 text-sm" : "mt-0.5 text-xs leading-snug"}`}>
-              {world.subtitle}
-            </p>
+          <div>
+            <h2 className="font-display text-base font-extrabold">{world.title}</h2>
+            <p className="mt-0.5 font-body text-xs font-semibold leading-snug text-white/85">{world.subtitle}</p>
           </div>
-          <span
-            className={`flex shrink-0 items-center justify-center rounded-full bg-white/20 font-bold backdrop-blur-sm ${
-              large ? "h-11 w-11 text-xl" : "h-8 w-8 text-base"
-            }`}
-            aria-hidden="true"
-          >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20 text-base font-bold backdrop-blur-sm" aria-hidden="true">
             →
           </span>
         </motion.div>
@@ -138,12 +131,10 @@ export function HubPage() {
         </div>
       </motion.div>
 
-      <div className="flex flex-col gap-4">
-        <WorldCard world={WORLDS[0]} index={0} large />
-        <div className="flex gap-4">
-          <WorldCard world={WORLDS[1]} index={1} />
-          <WorldCard world={WORLDS[2]} index={2} />
-        </div>
+      <div className="grid grid-cols-2 gap-4">
+        {WORLDS.map((world, index) => (
+          <WorldCard key={world.to} world={world} index={index} />
+        ))}
       </div>
     </div>
   );
