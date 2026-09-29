@@ -26,7 +26,7 @@ type FeedbackStatus = "correct" | "retry";
 
 /** Flash window: generous at difficulty 1, still comfortable but brisker at 5. */
 function windowMsFor(difficulty: number): number {
-  return Math.round(1600 - (difficulty - 1) * 200);
+  return Math.round(2200 - (difficulty - 1) * 150);
 }
 
 /** Share of trials that are RED (hold back). Slightly higher at high difficulty. */

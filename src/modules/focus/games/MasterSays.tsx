@@ -33,7 +33,7 @@ type Phase = "instruction" | "feedback";
 type FeedbackStatus = "correct" | "retry";
 
 function windowMsFor(difficulty: number): number {
-  return Math.round(2000 - (difficulty - 1) * 220);
+  return Math.round(2600 - (difficulty - 1) * 180);
 }
 
 function buildTrials(difficulty: number): { action: string; valid: boolean }[] {

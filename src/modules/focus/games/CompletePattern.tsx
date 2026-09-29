@@ -20,6 +20,10 @@ const SYMBOL_SETS = [
   ["🟨", "🟥"],
   ["⚽", "🥅", "🏆"],
 ] as const;
+// Wider unique symbol pool for decoys, independent of which set forms the
+// pattern -- some sets only leave 1-2 unused symbols among themselves, which
+// isn't enough for 3 distinct decoy options.
+const DECOY_POOL = ["⚽", "🥅", "🏆", "🟨", "🟥", "🎽", "🧤", "🚩"] as const;
 
 type Round = { display: string[]; answer: string; options: string[] };
 
@@ -45,8 +49,8 @@ function buildVisualRound(difficulty: number): Round {
   const pattern: string[] = [];
   for (let i = 0; i < cycles; i++) pattern.push(...set);
   const answer = set[0];
-  const otherSets = SYMBOL_SETS.flatMap((s) => s).filter((s) => !(set as readonly string[]).includes(s));
-  const decoys = shuffle(otherSets).slice(0, 3);
+  const decoyChoices = DECOY_POOL.filter((s) => !(set as readonly string[]).includes(s));
+  const decoys = shuffle(decoyChoices).slice(0, 3);
   const options = shuffle([answer, ...decoys]);
   return { display: pattern, answer, options };
 }

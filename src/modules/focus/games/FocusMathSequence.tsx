@@ -115,7 +115,9 @@ const TEMPLATES: Template[] = [
     build: () => {
       const a = randInt(5, 15);
       const b = randInt(5, 15);
-      const c = randInt(5, 20);
+      // Keep the balance non-negative -- a 7-13 year old audience hasn't
+      // necessarily met negative numbers yet.
+      const c = randInt(0, a + b);
       return {
         question: `Seu time fez ${a} gols jogando em casa e ${b} gols jogando fora, mas sofreu ${c} gols ao todo. Qual foi o saldo de gols (marcados menos sofridos)?`,
         answer: a + b - c,
