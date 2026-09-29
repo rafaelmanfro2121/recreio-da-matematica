@@ -4,6 +4,7 @@ import { HubPage } from "./pages/HubPage";
 import { MathModule } from "./modules/math/MathModule";
 import { LogicModule } from "./modules/logic/LogicModule";
 import { QuickThinkModule } from "./modules/quickthink/QuickThinkModule";
+import { FocusModule } from "./modules/focus/FocusModule";
 import { PageTransition } from "./shared/components/PageTransition";
 
 function AnimatedRoutes() {
@@ -40,6 +41,14 @@ function AnimatedRoutes() {
           element={
             <PageTransition>
               <QuickThinkModule />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/foco/*"
+          element={
+            <PageTransition>
+              <FocusModule />
             </PageTransition>
           }
         />

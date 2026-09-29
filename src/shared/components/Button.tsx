@@ -1,7 +1,7 @@
 import { motion, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 
-type Tone = "add" | "subtract" | "multiply" | "divide" | "math" | "logic" | "quick" | "ink" | "sun";
+type Tone = "add" | "subtract" | "multiply" | "divide" | "math" | "logic" | "quick" | "focus" | "ink" | "sun";
 
 const TONE_GRADIENT: Record<Tone, string> = {
   add: "bg-gradient-to-br from-op-add-light to-op-add",
@@ -11,6 +11,7 @@ const TONE_GRADIENT: Record<Tone, string> = {
   math: "bg-gradient-to-br from-world-math-light to-world-math",
   logic: "bg-gradient-to-br from-world-logic-light to-world-logic",
   quick: "bg-gradient-to-br from-world-quick-light to-world-quick",
+  focus: "bg-gradient-to-br from-world-focus-light to-world-focus",
   ink: "bg-gradient-to-br from-ink-soft to-ink",
   sun: "bg-gradient-to-br from-sun to-sun",
 };
