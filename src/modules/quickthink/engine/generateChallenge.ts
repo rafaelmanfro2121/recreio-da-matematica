@@ -16,9 +16,9 @@ export function optionCountForDifficulty(difficulty: number): number {
   return difficulty <= 2 ? 3 : 4;
 }
 
-/** Generous 4–7s window: 7s at the easiest level, shrinking gently as difficulty climbs. */
+/** Generous 7–9s window: 9s at the easiest level, shrinking gently as difficulty climbs. */
 export function timerMsForDifficulty(difficulty: number): number {
-  const seconds = 7 - (difficulty - 1) * 0.6;
+  const seconds = 9 - (difficulty - 1) * 0.5;
   return Math.round(seconds * 1000);
 }
 

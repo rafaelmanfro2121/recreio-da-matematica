@@ -25,8 +25,11 @@ type Phase = "active" | "feedback";
 type FeedbackStatus = "correct" | "retry";
 
 function windowMsFor(kind: Kind, difficulty: number): number {
-  const base = kind === "freeze" ? 2600 : 1700;
-  return Math.round(base - (difficulty - 1) * 150);
+  // Freeze gets HARDER by holding still LONGER as difficulty climbs; move
+  // gets harder by giving a shorter reaction window -- opposite directions,
+  // so they can't share one formula.
+  if (kind === "freeze") return Math.round(1800 + (difficulty - 1) * 350);
+  return Math.round(2000 - (difficulty - 1) * 150);
 }
 
 function buildTrials(difficulty: number): Kind[] {
